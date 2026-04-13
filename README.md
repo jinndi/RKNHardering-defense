@@ -129,15 +129,12 @@
   "inbounds": [
     {
       "type": "tun",
-      "interface_name": "rmnet_data1",
-      "address": [
-        "172.18.0.1/30"
-      ],
+      "address": "172.18.0.1/30",
       "mtu": 1500,
       "auto_route": true,
       "strict_route": true,
-      "stack": "gvisor",
-      "udp_timeout": "15m",
+      "stack": "mixed",
+      "udp_timeout": "3m",
       "endpoint_independent_nat": true,
       "include_package": [
         "ru.fourpda.client",

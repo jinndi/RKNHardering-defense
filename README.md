@@ -1,10 +1,13 @@
 # RKNHardering-defense
-<img width="296" height="108" alt="RKNHardering-defense" src="https://github.com/user-attachments/assets/d8254eb3-e28c-4e54-811b-7686ae609e8b" />
 
-### Проходим проверку [RKNHardering](https://github.com/xtclovver/RKNHardering) без рута, тихо, не спеша, без суеты
+<img width="268" height="117" alt="RKNHardering-defense" src="https://github.com/user-attachments/assets/490609c1-82da-431e-87f6-c890f45c02cd" />
+
+### Не проходим проверку [RKNHardering](https://github.com/xtclovver/RKNHardering) без рута, ~~тихо, не спеша, без суеты~~
 <hr>
 
 Итак, что же я хочу сказать:
+
+***Скрыть наличие TUN-интерфейса и системного прокси на Android без root-прав архитектурно невозможно. Однако можно попытаться минимизировать утечку информации о подключении, например IP адреса сервера, что и предлагает данная инструкция.***
 
 1. Устанавливаем [S-UI](https://github.com/alireza0/s-ui) на сервер.
 
@@ -269,7 +272,7 @@
    - отсканировать ссылку на подписку через приложение sing-box  
    - или вручную скопировать и добавить ссылку на JSON-подписку
 
-9. Проверяем работу - при успешной настройке должна появиться зелёная плашка в RKNHardering.
+9. Подключаемся и радуемся, но не сильно.
 
-Бит лютый вообще...
+~~Бит лютый вообще...~~
 

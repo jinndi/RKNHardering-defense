@@ -88,6 +88,7 @@
         "action": "route",
         "rule_set": [
           "category-ip-geo-detect",
+          "geosite-cheburnet",
           "geosite-category-ru"
         ],
         "server": "dns-direct"
@@ -203,6 +204,7 @@
       "action": "route",
       "rule_set": [
         "category-ip-geo-detect",
+        "geosite-cheburnet",
         "geosite-category-ru"
       ],
       "outbound": "direct"
@@ -228,6 +230,13 @@
       "tag": "category-ip-geo-detect",
       "type": "remote",
       "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geosite/category-ip-geo-detect.srs",
+      "format": "binary",
+      "download_detour": "proxy"
+    },
+    {
+      "tag": "geosite-cheburnet",
+      "type": "remote",
+      "url": "https://github.com/jinndi/geosite-cheburnet/releases/latest/download/geosite-cheburnet.srs",
       "format": "binary",
       "download_detour": "proxy"
     },

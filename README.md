@@ -138,7 +138,7 @@
       "strict_route": true,
       "stack": "mixed",
       "udp_timeout": "3m",
-      "endpoint_independent_nat": true,
+      "endpoint_independent_nat": false,
       "include_package": [
         "ru.fourpda.client",
         "com.discord",
@@ -175,7 +175,6 @@
   "auto_detect_interface": true,
   "final": "proxy",
   "default_domain_resolver": "dns-resolver",
-  "override_android_vpn": true,
   "find_process": true,
   "rules": [
     {
@@ -190,6 +189,10 @@
         }
       ],
       "action": "hijack-dns"
+    },
+    {
+      "action": "reject",
+      "protocol": "stun"
     },
     {
       "action": "route",
@@ -253,6 +256,15 @@
     }
   }
 }
+```
+
+> Если возникают проблемы со звонками через прокси, удалите из секции `route.rules` следующий блок (действие выполняется на ваш страх и риск):
+
+```json
+    {
+      "action": "reject",
+      "protocol": "stun"
+    },
 ```
 
 > Далее мы скачиваем приложение sing-box и модифицируем его, изменяя имя. Если вы параноик, как и я, можете сделать это.

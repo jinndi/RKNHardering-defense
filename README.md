@@ -41,7 +41,8 @@
 > 
 > Можно сделать наоборот: заменить `include_package` на `exclude_package`, в котором указать приложения, которым вы **не доверяете**, они исключатся из проксирования.
 >
-> В итоге должно быть что-то одно либо `include_package` либо `exclude_package`
+> ⚠️ В итоге **должно использоваться что-то одно** — либо `include_package`, либо `exclude_package`.
+Однако в приоритете лучше использовать `include_package`, так как если вы будете делиться ссылкой на подписку с кем-то ещё, невозможно заранее узнать, какое потенциально вредное приложение может появиться на его устройстве и которое потребуется исключить.
 
 > ⚠️ Если вы настраиваете всё это только для себя и не планируете давать ссылки на подписки кому-либо другому, кто не разбирается в этом, то просто настройте всё прямо в приложении sing-box: **Параметры → Перезапись профиля → Прокси для отдельных приложений**. В этом случае заполнять в шаблоне `include_package` и `exclude_package` не требуется - их необходимо удалить, чтобы не было конфликтов.
 
@@ -60,12 +61,10 @@
         "type": "hosts",
         "predefined": {
           "one.one.one.one": [
-            "1.1.1.1",
-            "1.0.0.1"
+            "1.1.1.1", "1.0.0.1"
           ],
           "common.dot.dns.yandex.net": [
-            "77.88.8.8",
-            "77.88.8.1"
+            "77.88.8.8", "77.88.8.1"
           ]
         }
       },
@@ -83,8 +82,8 @@
         "server": "common.dot.dns.yandex.net"
       },
       {
-        "type": "fakeip",
         "tag": "fakeip",
+        "type": "fakeip",
         "inet4_range": "198.18.0.0/15"
       },
       {
@@ -96,11 +95,9 @@
     "rules": [
       {
         "action": "reject",
-        "rule_set": "adguard",
-        "method": "default"
+        "rule_set": "adguard"
       },
       {
-        "action": "route",
         "rule_set": [
           "category-ip-geo-detect",
           "geosite-cheburnet",
@@ -125,8 +122,6 @@
         "server": "fakeip"
       }
     ],
-    "disable_cache": false,
-    "disable_expire": false,
     "independent_cache": true,
     "reverse_mapping": true,
     "final": "dns-proxy",
@@ -135,7 +130,10 @@
   "inbounds": [
     {
       "type": "tun",
-      "address": "172.18.0.1/30",
+      "address": [
+        "172.18.0.1/30", 
+        "fdfe:dcba:9876::1/126"
+      ],
       "mtu": 1500,
       "auto_route": true,
       "strict_route": true,
@@ -143,35 +141,22 @@
       "udp_timeout": "3m",
       "endpoint_independent_nat": false,
       "include_package": [
-        "ru.fourpda.client",
         "com.discord",
-        "com.android.chrome",
         "org.mozilla.firefox",
-        "com.brave.browser",
         "com.github.android",
         "com.openai.chatgpt",
         "com.instagram.android",
-        "com.shazam.android",
-        "com.soundcloud.android",
         "org.zwanoo.android.speedtest",
-        "com.valvesoftware.android.steam.community",
         "org.telegram.messenger",
-        "org.telegram.messenger.web",
-        "com.instagram.barcelona",
-        "com.ton_keeper",
-        "tv.twitch.android.app",
         "com.twitter.android",
         "com.google.android.apps.docs",
         "com.google.android.apps.bard",
         "com.google.android.googlequicksearchbox",
         "com.google.android.webview",
         "com.google.android.gm",
-        "com.android.vending",
         "com.google.android.apps.tachyon",
         "com.google.android.youtube",
-        "anddea.youtube",
-        "com.google.android.gms",
-        "com.facebook.katana"
+        "com.google.android.gms"
       ]
     }
   ],
@@ -198,12 +183,10 @@
       "protocol": "stun"
     },
     {
-      "action": "route",
       "ip_is_private": true,
       "outbound": "direct"
     },
     {
-      "action": "route",
       "rule_set": [
         "category-ip-geo-detect",
         "geosite-cheburnet",
@@ -215,7 +198,6 @@
       "action": "resolve"
     },
     {
-      "action": "route",
       "rule_set": "geoip-ru",
       "outbound": "direct"
     }
@@ -225,42 +207,36 @@
       "tag": "adguard",
       "type": "remote",
       "url": "https://github.com/jinndi/adguard-filter-list-srs/releases/latest/download/adguard-filter-list.srs",
-      "format": "binary",
       "download_detour": "proxy"
     },
     {
       "tag": "fakeip-filter",
       "type": "remote",
       "url": "https://github.com/jinndi/fakeip-filter-srs/releases/latest/download/fakeip-filter.srs",
-      "format": "binary",
       "download_detour": "proxy"
     },
     {
       "tag": "category-ip-geo-detect",
       "type": "remote",
       "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geosite/category-ip-geo-detect.srs",
-      "format": "binary",
       "download_detour": "proxy"
     },
     {
       "tag": "geosite-cheburnet",
       "type": "remote",
       "url": "https://github.com/jinndi/geosite-cheburnet/releases/latest/download/geosite-cheburnet.srs",
-      "format": "binary",
       "download_detour": "proxy"
     },
     {
       "tag": "geoip-ru",
       "type": "remote",
       "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geoip/ru.srs",
-      "format": "binary",
       "download_detour": "proxy"
     },
     {
       "tag": "geosite-category-ru",
       "type": "remote",
       "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geosite/category-ru.srs",
-      "format": "binary",
       "download_detour": "proxy"
     }
   ],

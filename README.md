@@ -166,6 +166,10 @@
   "find_process": true,
   "rules": [
     {
+      "network": "icmp",
+      "outbound": "direct"
+    },
+    {
       "type": "logical",
       "mode": "or",
       "rules": [

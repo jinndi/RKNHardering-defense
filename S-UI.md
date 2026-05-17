@@ -159,20 +159,7 @@
       "action": "hijack-dns"
     },
     {
-      "type": "logical",
-      "mode": "and",
-      "rules": [
-        {
-          "protocol": "stun"
-        },
-        {
-          "rule_set": [
-            "geosite-cheburnet",
-            "geosite-category-ru"
-          ],
-          "invert": true
-        }
-      ],
+      "protocol": "stun",
       "action": "reject"
     },
     {
@@ -249,20 +236,7 @@
 
 ```json
   {
-    "type": "logical",
-    "mode": "and",
-    "rules": [
-      {
-        "protocol": "stun"
-      },
-      {
-        "rule_set": [
-          "geosite-cheburnet",
-          "geosite-category-ru"
-        ],
-        "invert": true
-      }
-    ],
+    "protocol": "stun",
     "action": "reject"
   },
 ```

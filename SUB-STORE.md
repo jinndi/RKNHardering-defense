@@ -151,20 +151,7 @@
         "action": "hijack-dns"
       },
       {
-        "type": "logical",
-        "mode": "and",
-        "rules": [
-          {
-            "protocol": "stun"
-          },
-          {
-            "rule_set": [
-              "geosite-cheburnet",
-              "geosite-category-ru"
-            ],
-            "invert": true
-          }
-        ],
+        "protocol": "stun",
         "action": "reject"
       },
       {
@@ -246,24 +233,11 @@
 }
 ```
 
-> Если возникают проблемы со звонками через прокси в зарубежных приложениях, удалите из секции `route.rules` следующий блок (действие выполняется на ваш страх и риск):
+> Если возникают проблемы со звонками, удалите из секции `route.rules` следующий блок (действие выполняется на ваш страх и риск):
 
 ```json
   {
-    "type": "logical",
-    "mode": "and",
-    "rules": [
-      {
-        "protocol": "stun"
-      },
-      {
-        "rule_set": [
-          "geosite-cheburnet",
-          "geosite-category-ru"
-        ],
-        "invert": true
-      }
-    ],
+    "protocol": "stun",
     "action": "reject"
   },
 ```
@@ -285,7 +259,7 @@ try {
     produceType: "internal"
   })
 } catch (e) {
-  throw new Error("Не удалось загрузить подписку 'BS'. Проверьте имя вкладки подписки.")
+  throw new Error(`Не удалось загрузить подписку '${subName}'. Проверьте имя вкладки подписки.`)
 }
 
 // 2. Парсим шаблон (вставленный ранее как основа конфига)
@@ -311,7 +285,8 @@ if (allProxyTags.length > 0) {
     "tag": "⚡ Auto Select",
     "outbounds": [...allProxyTags],
     "url": "https://www.gstatic.com/generate_204",
-    "interval": "5m",  // тут можно указать как часто делать проверку
+    "interrupt_exist_connections": true,
+    "interval": "10m", // тут можно указать как часто делать проверку
     "tolerance": 150   // если на это кол-во пинг найдется ниже,
                        // то будет переключение на этот сервер
   };
@@ -321,6 +296,8 @@ if (allProxyTags.length > 0) {
   let mainSelector = {
     "type": "selector",
     "tag": "proxy",
+    "default": "direct",
+    "interrupt_exist_connections": true,
     "outbounds": [
       "direct",
       "⚡ Auto Select",

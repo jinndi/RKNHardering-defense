@@ -253,7 +253,7 @@ const subName = "mysub"
 let singboxProxies = []
 try {
   singboxProxies = await produceArtifact({
-    type: "subscription",
+    type: "subscription", // доступно так-же 'collection'
     name: subName,
     platform: "sing-box",
     produceType: "internal"

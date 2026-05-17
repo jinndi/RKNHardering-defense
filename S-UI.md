@@ -187,37 +187,37 @@
       "tag": "adguard",
       "type": "remote",
       "url": "https://github.com/jinndi/adguard-filter-list-srs/releases/latest/download/adguard-filter-list.srs",
-      "download_detour": "proxy"
+      "download_detour": "direct"
     },
     {
       "tag": "fakeip-filter",
       "type": "remote",
       "url": "https://github.com/jinndi/fakeip-filter-srs/releases/latest/download/fakeip-filter.srs",
-      "download_detour": "proxy"
+      "download_detour": "direct"
     },
     {
       "tag": "category-ip-geo-detect",
       "type": "remote",
       "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geosite/category-ip-geo-detect.srs",
-      "download_detour": "proxy"
+      "download_detour": "direct"
     },
     {
       "tag": "geosite-cheburnet",
       "type": "remote",
       "url": "https://github.com/jinndi/geosite-cheburnet/releases/latest/download/geosite-cheburnet.srs",
-      "download_detour": "proxy"
+      "download_detour": "direct"
     },
     {
       "tag": "geoip-ru",
       "type": "remote",
       "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geoip/ru.srs",
-      "download_detour": "proxy"
+      "download_detour": "direct"
     },
     {
       "tag": "geosite-category-ru",
       "type": "remote",
       "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geosite/category-ru.srs",
-      "download_detour": "proxy"
+      "download_detour": "direct"
     }
   ],
   "experimental": {

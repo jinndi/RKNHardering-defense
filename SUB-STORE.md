@@ -4,11 +4,11 @@
 
 2. Настраиваем `Sub-Store`:
 
-- **`Profile`**: Во-первых, переключитесь на английский язык (в меню слева самая последняя вкладка - `Profile`, там вверху справа будет значок переключения).
+  - **`Profile`**: Во-первых, переключитесь на английский язык (в меню слева самая последняя вкладка - `Profile`, там вверху справа будет значок переключения).
   
-- **`Subs`**: Создаём подписку (первая вкладка - `Subs`). Доступно добавление по ссылке (`Remote URL`) либо локальная вставка (`Local`), можно использовать и то и другое сразу. В поле `Name` вводим название на английском - допустим, `mysub`. Запомним его и сохраним настройки кнопкой внизу, завершив добавление подписки.
+  - **`Subs`**: Создаём подписку (первая вкладка - `Subs`). Доступно добавление по ссылке (`Remote URL`) либо локальная вставка (`Local`), можно использовать и то и другое сразу. В поле `Name` вводим название на английском - допустим, `mysub`. Запомним его и сохраним настройки кнопкой внизу, завершив добавление подписки.
 
-- **`File` (`Source`)**: Переходим во вкладку `File`, нажимаем сверху на `+` и выбираем в появившемся боковом меню `File`. Задаём имя на английском в поле `Name` (например, `myfile`). Ниже убеждаемся, что в поле `Type` выбрано значение `File`, а не `Mihomo Profile`. Затем в поле `Source` переключаемся в режим `Local`.
+  - **`File` (`Source`)**: Переходим во вкладку `File`, нажимаем сверху на `+` и выбираем в появившемся боковом меню `File`. Задаём имя на английском в поле `Name` (например, `myfile`). Ниже убеждаемся, что в поле `Type` выбрано значение `File`, а не `Mihomo Profile`. Затем в поле `Source` переключаемся в режим `Local`.
 
 Добавляем следующий шаблон в поле ввода:
 
@@ -187,37 +187,37 @@
         "tag": "adguard",
         "type": "remote",
         "url": "https://github.com/jinndi/adguard-filter-list-srs/releases/latest/download/adguard-filter-list.srs",
-        "download_detour": "proxy"
+        "download_detour": "direct"
       },
       {
         "tag": "fakeip-filter",
         "type": "remote",
         "url": "https://github.com/jinndi/fakeip-filter-srs/releases/latest/download/fakeip-filter.srs",
-        "download_detour": "proxy"
+        "download_detour": "direct"
       },
       {
         "tag": "category-ip-geo-detect",
         "type": "remote",
         "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geosite/category-ip-geo-detect.srs",
-        "download_detour": "proxy"
+        "download_detour": "direct"
       },
       {
         "tag": "geosite-cheburnet",
         "type": "remote",
         "url": "https://github.com/jinndi/geosite-cheburnet/releases/latest/download/geosite-cheburnet.srs",
-        "download_detour": "proxy"
+        "download_detour": "direct"
       },
       {
         "tag": "geoip-ru",
         "type": "remote",
         "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geoip/ru.srs",
-        "download_detour": "proxy"
+        "download_detour": "direct"
       },
       {
         "tag": "geosite-category-ru",
         "type": "remote",
         "url": "https://github.com/KaringX/karing-ruleset/raw/sing/geo/geosite/category-ru.srs",
-        "download_detour": "proxy"
+        "download_detour": "direct"
       }
     ]
   },
@@ -242,7 +242,7 @@
   },
 ```
 
-- **`File` `Script Operator`**: Там же, но чуть ниже будет карточка с заголовком `Add an action`. В ней выбираем `Script Operator`. Появится новое окно ввода выше - переключаемся в нём на вкладку `Local Content` и вставляем следующий шаблон:
+  - **`File` `Script Operator`**: Там же, но чуть ниже будет карточка с заголовком `Add an action`. В ней выбираем `Script Operator`. Появится новое окно ввода выше - переключаемся в нём на вкладку `Local Content` и вставляем следующий шаблон:
 
 ```javascript
 
@@ -296,10 +296,9 @@ if (allProxyTags.length > 0) {
   let mainSelector = {
     "type": "selector",
     "tag": "proxy",
-    "default": "direct",
+    "default": "⚡ Auto Select",
     "interrupt_exist_connections": true,
     "outbounds": [
-      "direct",
       "⚡ Auto Select",
       ...allProxyTags
     ]
@@ -338,10 +337,12 @@ const subName = "mysub"
 
 После чего сохраните ваш файл кнопкой `Save` внизу.
 
-- **`Share`**: Последний этап - создание ссылки на готовую подписку (`File`). Переходим во вкладку `Share`, нажимаем на кнопку `Create Now`. Далее в появившемся окне в поле `Source` выбираем `File`, а затем - ваш созданный в предыдущем пункте файл (`myfile`). Задаём срок действия в поле `Valid for` (количество дней/месяцев и т. д. в зависимости от выбранного режима в `Expiration Mode`) и нажимаем `Save Changes`. Подписка готова! Она появится в списке вкладки `Share`, скопировать ссылку можно нажатием на значок копирования.
+  - **`Share`**: Последний этап - создание ссылки на готовую подписку (`File`). Переходим во вкладку `Share`, нажимаем на кнопку `Create Now`. Далее в появившемся окне в поле `Source` выбираем `File`, а затем - ваш созданный в предыдущем пункте файл (`myfile`). Задаём срок действия в поле `Valid for` (количество дней/месяцев и т. д. в зависимости от выбранного режима в `Expiration Mode`) и нажимаем `Save Changes`. Подписка готова! Она появится в списке вкладки `Share`, скопировать ссылку можно нажатием на значок копирования.
+
 
 3. Скачиваем из репозитория [sing-box](https://github.com/SagerNet/sing-box/releases/latest) последнюю стабильную APK-версию приложения для Android (пример:  
    `SFA-1.13.12-arm64-v8a.apk`) и устанавливаем!
+
 
 4. Приложения, которым вы не доверяете, могут собирать сведения об установленных на вашем устройстве приложениях. Поэтому мы скрываем доверенные приложения, включая установленное приложение sing-box, с помощью настроек телефона. Например, на Realme это находится в разделе:
 
